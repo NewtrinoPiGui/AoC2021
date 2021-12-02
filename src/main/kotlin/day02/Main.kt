@@ -2,9 +2,7 @@ package day02
 
 import readInput
 
-val moveForward = Regex("""forward\s+(\d+)""")
-val moveDown = Regex("""down\s+(\d+)""")
-val moveUp = Regex("""up\s+(\d+)""")
+val move = Regex("""(forward|down|up)\s+(\d+)""")
 
 data class Position(var horizontal: Int = 0, var depth: Int = 0, var aim: Int = 0)
 

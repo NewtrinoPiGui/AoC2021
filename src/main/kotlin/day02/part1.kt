@@ -33,14 +33,14 @@ package day02
  * Calculate the horizontal position and depth you would have after following the planned course. What do you get if you multiply your final horizontal position by your final depth?
  */
 fun part1(input: List<String>): Int =
-    input.fold(Position()) { accumulator: Position, instruction: String ->
-        when {
-            moveForward.matches(instruction) ->
-                accumulator.horizontal += moveForward.matchEntire(instruction)?.groupValues!![1].toIntOrNull() ?: 0
-            moveDown.matches(instruction) ->
-                accumulator.depth += moveDown.matchEntire(instruction)?.groupValues!![1].toIntOrNull() ?: 0
-            moveUp.matches(instruction) ->
-                accumulator.depth -= moveUp.matchEntire(instruction)?.groupValues!![1].toIntOrNull() ?: 0
-        }
-        accumulator
-    }.let { it.horizontal * it.depth }
+	input.fold(Position()) { accumulator: Position, instruction: String ->
+		val matcher = move.matchEntire(instruction)
+		val direction = matcher?.groupValues?.get(1)
+		val units = matcher?.groupValues?.get(2)?.toInt() ?: 0
+		when (direction) {
+			"forward" -> accumulator.horizontal += units
+			"down"    -> accumulator.depth += units
+			"up"      -> accumulator.depth -= units
+		}
+		accumulator
+	}.let { it.horizontal * it.depth }
