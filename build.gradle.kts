@@ -6,14 +6,27 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    // Use JUnit Jupiter for testing.
+    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine")
+    // Use the Kotlin JUnit integration.
+    testImplementation("org.jetbrains.kotlin", "kotlin-test-junit5")
+}
+
 tasks {
     sourceSets {
         main {
-            java.srcDirs("src")
+            java.srcDirs("src/main/kotlin")
         }
     }
 
     wrapper {
         gradleVersion = "7.3"
+    }
+
+    withType<Test> {
+        useJUnitPlatform {
+            includeEngines("junit-jupiter")
+        }
     }
 }
