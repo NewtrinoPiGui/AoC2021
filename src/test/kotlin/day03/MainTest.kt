@@ -14,6 +14,6 @@ class MainTest {
 
     @Test
     fun `Validate day03 part 2`() {
-        assertEquals(part2(testInput), 0)
+        assertEquals(part2(testInput), 230)
     }
 }

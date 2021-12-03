@@ -70,6 +70,6 @@ fun part1(input: List<String>): Int {
         epsilonRateString += epsilonRateMap[index] ?: "0"
     }
     val gammaRate = gammaRateString.toInt(2)
-    val epsilongRate = epsilonRateString.toInt(2)
-    return gammaRate * epsilongRate
+    val epsilonRate = epsilonRateString.toInt(2)
+    return gammaRate * epsilonRate
 }

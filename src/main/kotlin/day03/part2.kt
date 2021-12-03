@@ -1,5 +1,7 @@
 package day03
 
+import java.security.InvalidParameterException
+
 /**
  * Next, you should verify the life support rating, which can be determined by multiplying the oxygen generator rating
  * by the CO2 scrubber rating.
@@ -43,5 +45,43 @@ package day03
  * Use the binary numbers in your diagnostic report to calculate the oxygen generator rating and CO2 scrubber rating, then multiply them together. What is the life support rating of the submarine? (Be sure to represent your answer in decimal, not binary.)
  */
 fun part2(input: List<String>): Int {
-    return 0
+    val oxyGeneratorRating = findOxygenGeneratorRating(input).toInt(2)
+    val co2ScrubberRating = findCO2ScrubberRating(input).toInt(2)
+    return oxyGeneratorRating * co2ScrubberRating
+}
+
+fun getLeadingDigitFilter(input: List<String>, index: Int, indicator: (Int, Int) -> Char): Char {
+    var oneCounter = 0
+    var zeroCounter = 0
+    input.forEach { reading ->
+        if (reading[index] == '1') oneCounter++
+        else zeroCounter++
+    }
+    return indicator(zeroCounter, oneCounter)
+}
+
+fun findOxygenGeneratorRating(input: List<String>, index: Int = 0): String {
+    if (input.isEmpty()) {
+        throw InvalidParameterException("Unable to find OxygenGeneratorRating from empty list")
+    }
+    if (input.size == 1) {
+        return input[0]
+    }
+    val leadingDigitFilter = getLeadingDigitFilter(input, index) { zeroCounter, oneCounter ->
+        if (oneCounter >= zeroCounter) '1' else '0'
+    }
+    return findOxygenGeneratorRating(input.filter { reading -> reading[index] == leadingDigitFilter }, index + 1)
+}
+
+fun findCO2ScrubberRating(input: List<String>, index: Int = 0): String {
+    if (input.isEmpty()) {
+        throw InvalidParameterException("Unable to find CO2ScrubberRating from empty list")
+    }
+    if (input.size == 1) {
+        return input[0]
+    }
+    val leadingDigitFilter = getLeadingDigitFilter(input, index) { zeroCounter, oneCounter ->
+        if (zeroCounter <= oneCounter) '0' else '1'
+    }
+    return findCO2ScrubberRating(input.filter { reading -> reading[index] == leadingDigitFilter }, index + 1)
 }
