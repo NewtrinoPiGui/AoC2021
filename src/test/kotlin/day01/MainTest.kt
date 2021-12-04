@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
 class MainTest {
-    private val testInput = readTestInput("day01/test")
+	private val testInput = readTestInput("day01/test")
 
-    @Test
-    fun `Validate day01 part 1`() {
-        assertEquals(part1(testInput), 7)
-    }
+	@Test
+	fun `Validate day01 part 1`() {
+		assertEquals(7, part1(testInput))
+	}
 
-    @Test
-    fun `Validate day01 part 2`() {
-        assertEquals(part2(testInput), 5)
-    }
+	@Test
+	fun `Validate day01 part 2`() {
+		assertEquals(5, part2(testInput))
+	}
 }

@@ -1,7 +1,6 @@
 package day01
 
 /**
- * --- Part Two ---
  * Considering every single measurement isn't as useful as you expected: there's just too much noise in the data.
  *
  * Instead, consider sums of a three-measurement sliding window. Again considering the above example:

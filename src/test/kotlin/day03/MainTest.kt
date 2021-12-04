@@ -9,11 +9,11 @@ class MainTest {
 
     @Test
     fun `Validate day03 part 1`() {
-        assertEquals(part1(testInput), 198)
+        assertEquals(198, part1(testInput))
     }
 
     @Test
     fun `Validate day03 part 2`() {
-        assertEquals(part2(testInput), 230)
+        assertEquals(230, part2(testInput))
     }
 }
